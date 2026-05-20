@@ -1,3 +1,9 @@
+commit e38cb4eda62648890d28bb3c5c79181a57274def
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Mar 28 09:54:02 2026 +0000
+
+    bumped changelog version
+
 commit bcdd23889aaf233c47fe4a940e72ac3b15dd4d24
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Mar 28 05:30:50 2026 -0400
@@ -260,7 +266,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Apr 25 07:18:28 2025 -0400
 
     Merge pull request #1 from JeremyRand/distutils
-    
+
     Remove `distutils` dependency
 
 commit 03ed73a7c2bb55def42357dd3c6f35da489c9e54
@@ -268,15 +274,15 @@ Author: Jeremy Rand <jeremyrand@danwin1210.de>
 Date:   Fri Apr 25 04:32:19 2025 +0000
 
     Remove distutils dependency
-    
+
     distutils was removed in Python 3.12, per deprecation in PEP
     632. It is not present in Debian Trixie and higher.
-    
+
     Removing distutils from Kicksecure dependencies fixes issues
     when distro-morphing Debian Trixie and higher to Kicksecure. It
     is also necessary for installing Kicksecure on ports-only
     architectures such as ppc64.
-    
+
     As best I can tell, setup-wizard-dist is not actually using
     distutils anywhere, so no code changes or new dependencies
     should be necessary. If I am mistaken on this,
@@ -587,7 +593,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Sep 26 07:09:38 2024 -0400
 
     fix detection of Whonix-Workstation
-    
+
     therefore fix autostart of setup-wizard-dist inside Whonix-Workstation
 
 commit 338e9f4842136590bd77c3f70b14ee11e2d964e3
@@ -661,7 +667,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 4 08:06:09 2024 -0400
 
     skip setup-wizard-dist (systemcheck autostart at first boot) in Kicksecure-Qubes by default
-    
+
     (as this would lead to too many systemcheck runs at Qubes VM first starts)
 
 commit 68aeb4b97bafcac4b1a8a28da28775f071f39ddd
@@ -753,9 +759,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Mar 20 12:06:09 2024 -0400
 
     no longer autostart anon-connection-wizard from setup-wizard-dist
-    
+
     connect to public Tor network by default / avoid Anon Connection Wizard (ACW) popup at first boot
-    
+
     https://forums.whonix.org/t/connect-to-public-tor-network-by-default-avoid-anon-connection-wizard-acw-popup-at-first-boot/17848
 
 commit 864268584c19e0e67c1448393c8d28d9ae0ae80e
@@ -1021,7 +1027,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Aug 30 15:10:53 2023 -0400
 
     allow exiting application using ctrl + c (signal sigint)
-    
+
     for easier debugging
 
 commit 026dcb202cc3d699d2d9dcd15fdc1dcba001a5bd
@@ -1335,7 +1341,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Aug 4 07:26:21 2021 -0400
 
     chmod -x usr/lib/python3/dist-packages/setup_wizard_dist/setup_wizard_dist.py
-    
+
     as per lintian FHS
 
 commit a5fb9076fd6cad97f8ee847729864f6f66e59491
@@ -1571,7 +1577,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Feb 3 11:29:45 2021 -0500
 
     remove legacy files
-    
+
     rm_conffile /etc/sudoers.d/whonix-setup-wizard
     rm_conffile /etc/xdg/autostart/whonix-setup-wizard.desktop
 
@@ -1809,7 +1815,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 15 11:57:31 2019 -0400
 
     debugging
-    
+
     https://github.com/tasket/Qubes-VM-hardening/issues/29#issuecomment-511172887
 
 commit 085fb20ee9b7f441cf84ae6235ce9df26a44ccd7
@@ -1817,7 +1823,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 15 11:56:37 2019 -0400
 
     debugging
-    
+
     https://github.com/tasket/Qubes-VM-hardening/issues/29#issuecomment-511172887
 
 commit 91f68ff541044f0c1912e09e81b3c03a0ec62713
@@ -1879,7 +1885,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 23 08:15:15 2019 -0400
 
     implement /var/cache/whonix-setup-wizard/status-files/finish_page.skip
-    
+
     implement /var/cache/whonix-setup-wizard/status-files/finish_page.done
 
 commit 957572a63a638ab33d204ad63b03fb4e26007790
@@ -2187,18 +2193,18 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Mar 1 14:32:45 2019 +0000
 
     add improved legal protections clauses
-    
+
     The license for software created by Whonix is the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version with additional terms applicable per GNU GPL version 3 section 7.
-    
+
     The additional terms are based on the Doom 3 license which is Debian refers to as `GPL-3+-with-id-software-additional-terms`, which is Debian DFSG [1] (The Debian Free Software Guidelines) approved and which is therefore suitable for Debian `main`. Whonix made applied minimal changes to it:
-    
+
     * Rewrite `The Doom 3 BFG Edition GPL Source Code` to the more common `this program` which is used throughout the GPL.
     * Added a "trump clause" [2], in other words, any conflicts or disputes between the additional terms and the GPLv3 shall be resolved in favor of the GPLv3 by adding `Notwithstanding any other provision of this License` (as mentioned in GPL FAQ [3]) at the beginning of the additional terms.
-    
+
     [1] https://www.debian.org/social_contract#guidelines
     [2] https://www.fsf.org/news/canonical-updated-licensing-terms
     [3] https://www.gnu.org/licenses/gpl-faq.html#v3Notwithstanding
-    
+
     For more considerations, see also:
     https://www.whonix.org/wiki/Dev/Licensing
 
@@ -2279,7 +2285,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jul 20 15:46:42 2018 +0000
 
     Merge pull request #8 from irykoon/master
-    
+
      Replace choosing keyboard layout with choosing input method
 
 commit 7a36f4f77d24e22dd051322d316e7d23ed93a2b2
@@ -2293,7 +2299,7 @@ Author: irykoon <irykoon@gmail.com>
 Date:   Tue Jul 17 15:03:10 2018 +0000
 
     Replace kcmshell kcm_keyboard with ibus-setup
-    
+
     kcm_keyboard is no longer available as a module in kcmshell4. See
     kcmshell4 --list for all the modules. Instead, we use ibus-setup to
     set input methods.
@@ -2315,7 +2321,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Apr 7 10:03:04 2018 +0200
 
     remove connection wizard shortcut since this is now done by anon-connection-wizard
-    
+
     https://forums.whonix.org/t/qubes-whonix-14-0-0-6-9-templatevms-for-r3-2-and-r4-testers-wanted/4988/95
 
 commit f87749a43fb1bbea03ddc861a158c2c75f21395d
@@ -2472,7 +2478,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jan 25 01:18:07 2018 +0000
 
     add disabled code for starting whonix-setup-wizard on Whonix-Gateway if Tor is not running
-    
+
     TODO: Make sure systemd unit tor@default starts before /etc/xdg/autostart/whonix-setup-wizard.desktop
 
 commit 4e96593f5b4deaae564c0d64423c9bfe1d88eb56
@@ -2546,11 +2552,11 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jan 25 00:13:46 2018 +0000
 
     code simplification
-    
+
     fix intend
-    
+
     error out if whonix-setup-wizard is not found
-    
+
     print to console if doing nothing
 
 commit a9d2fdaa19439e3dbb55b80db4e9a1d3676b5b4a
@@ -2576,9 +2582,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jan 25 00:35:42 2018 +0100
 
     fix import of tor_status
-    
+
     from whonix-setup-wizard to anon-connection-wizard
-    
+
     do `from whonix_setup_wizard.tor_status import tor_status` conditionally only on Whonix-Gateway,
     because anon-connection-wizard is not installed on Whonix-Workstation
 
@@ -2587,7 +2593,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jan 25 00:22:15 2018 +0100
 
     skip file should always be honored
-    
+
     /var/cache/whonix-setup-wizard/status-files/whonixsetup.skip
 
 commit 6097babd1b6284588fa1147265e807f27c1e05d5
@@ -2626,7 +2632,7 @@ Author: irykoon <irykoon@gmail.com>
 Date:   Wed Jan 24 20:37:41 2018 +0000
 
     Simplify Pages Steps
-    
+
     1. Replace ConnectionPage with anon-connection-wizard
     2. Remove FinishPage
 
@@ -2665,7 +2671,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jan 21 13:34:52 2018 +0100
 
     don't depend on anon-connection-wizard so it does not get installed in workstation
-    
+
     by default
 
 commit 68d9a24045bde69b19ab3b569019fa2214543c52
@@ -2727,7 +2733,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jan 12 15:56:02 2018 +0000
 
     add "whonix-setup-wizard repository" compatibility
-    
+
     (run whonix-repository-wizard then)
 
 commit 6793d6733e79db6e52fcaf1f475970bcc6d33b07
@@ -2772,7 +2778,7 @@ Author: irykoon <irykoon@gmail.com>
 Date:   Mon Jan 8 05:44:05 2018 +0000
 
     Remove import tor_status from anon-connection-wizard
-    
+
     Still we need the anon-connection-wizard as a dependecy because we really use it to do the network connection.
 
 commit 4404d990a2806e55d0dea06dcccb0ff254b1c8ed
@@ -2792,7 +2798,7 @@ Author: irykoon <irykoon@gmail.com>
 Date:   Mon Jan 8 05:28:01 2018 +0000
 
     Use tor_status.py in anon_connection_wizard module instead
-    
+
     This will create an dependency on anon-connection-wizard, which means anon-connection-wizard should be installed by default in Whonix.
 
 commit 06af6ccc34f99119173245bb6ec3f329457ba8c7
@@ -2819,7 +2825,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jan 6 15:10:05 2018 +0100
 
     Revert "add missing dependency lsb-release"
-    
+
     This reverts commit f967b0e7a87475f760316a2d8a6cd1342e6db776.
 
 commit f967b0e7a87475f760316a2d8a6cd1342e6db776
@@ -2833,7 +2839,7 @@ Author: irykoon <irykoon@gmail.com>
 Date:   Sun Dec 3 07:16:18 2017 +0000
 
     Remove `tor_status.py`
-    
+
     Remove `tor_status.py` from `whonix-setup-wizard` package since an extended version of it is available in `anon-connection-wizard` package.
 
 commit eaf739ba5888db1a92f3518b3d3ae70d217203f3
@@ -2841,9 +2847,9 @@ Author: irykoon <irykoon@gmail.com>
 Date:   Sun Dec 3 04:57:09 2017 +0000
 
     Minor commenting
-    
+
     Integrate Anon-Connection-Wizard into whonix-setup-wizard
-    
+
     1. Remove torrc status page
     2. Change the connection page to a big button which will launch anon-connection-wizard
 
@@ -2885,7 +2891,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jun 9 11:00:46 2017 +0000
 
     Merge pull request #2 from irykoon/master
-    
+
     detailed instructions on bridges
 
 commit 48f868f4a9b1da1a675b8ff88a220615dc0b72cf
@@ -2913,7 +2919,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jun 5 14:35:22 2017 +0200
 
     Merge pull request #1 from irykoon/master
-    
+
     update the path to torrc
 
 commit 6f9436d98a5127a3ba28a80ca322919f5e1dca33
@@ -2977,7 +2983,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Feb 21 22:36:33 2017 +0000
 
     fix
-    
+
     https://phabricator.whonix.org/T637
 
 commit 91f9882b5f38522da27b4a1051dab99d3520821b
@@ -2985,7 +2991,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Feb 21 22:21:49 2017 +0000
 
     use systemctl --no-pager to prevent blocking due to systemctl interactivity
-    
+
     https://phabricator.whonix.org/T637
 
 commit 125bbda619ff24d9c2cca3bbf9b3aa5375c2abaa
@@ -3005,7 +3011,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Feb 10 15:47:56 2017 +0000
 
     remove faketime from Build-Depends:
-    
+
     since no longer used for reproducible builds
 
 commit 5e7ac3d25de08304697e67c75da6f2a49c0da7b3
@@ -3031,7 +3037,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Feb 10 14:50:53 2017 +0000
 
     add missing Depends: whonix-repository
-    
+
     otherwhonix whonix-setup-wizard repository would fail
 
 commit 18732accb21ae6003b690cdd1e6dbbc3b8906a9e
@@ -3158,7 +3164,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Mar 31 01:29:06 2016 +0000
 
     added stable-proposed-updates repository
-    
+
     https://phabricator.whonix.org/T200
 
 commit 8df32c994d70a461b3f4d6754af45640c61e8b6e
@@ -3187,15 +3193,15 @@ Author: troubadoour <trobador@riseup.net>
 Date:   Sat Dec 19 21:08:15 2015 +0000
 
     whonixsetup_check_for_start
-    
+
     - gateway
     In Qubes-Whonix -> anon-connection-wizard
     In non Qubes-Whonix -> whonix-setup-wizard
-    
+
     - workstation
     In Qubes-Whonix -> exit(0)
     In non Qubes-Whonix -> whonix-setup-wizard
-    
+
     Remove .skip files conditions.
 
 commit 391edfa4d321f27aa1f74a07b8c8704767aaee70
@@ -3274,11 +3280,11 @@ Date:   Fri Dec 18 19:42:21 2015 +0000
     Do not run "whonix-setup-wizard setup" in Qubes.
     Related to https://www.whonix.org/wiki/Dev/whonixsetup#Where_to_show_which_page_-_Non-Qubes-Whonix_vs_Qubes-Whonix
     "whonix-setup-wizard setup" is never used in Qubes.
-    
+
     Add
         if argument == 'setup' and os.path.exists('/var/lib/qubes'):
             sys.exit(0)
-    
+
     so that we do not need any longer the .skip files.
 
 commit d57e4e846da2343f5273ed9b8bb745153e3a547c
@@ -3391,7 +3397,7 @@ Author: troubadoour <trobador@riseup.net>
 Date:   Thu Nov 26 17:32:24 2015 +0000
 
     "quick" argument
-    
+
     sys.exit(0) moved after Tor bootstrap loop.
     Write "whonixsetup.done" if file does not exist.
 
@@ -4439,7 +4445,7 @@ Author: troubadoour <trobador@riseup.net>
 Date:   Mon Dec 15 16:05:58 2014 +0000
 
     Revert "connection page: Next button state on load."
-    
+
     This reverts commit 128c18fdaf5f0caf286229301db883a04711962a.
 
 commit 128c18fdaf5f0caf286229301db883a04711962a
