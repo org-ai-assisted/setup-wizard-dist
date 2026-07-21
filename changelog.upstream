@@ -1,3 +1,69 @@
+commit f2fdfda72d15c24e118a0291a83e3153eb1cca89
+Merge: c26ffd8 e546946
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 21 06:24:29 2026 -0400
+
+    Merge remote-tracking branch 'refs/remotes/org-ai-assisted/master'
+
+commit e54694606f4d5bf50ca1526ca28250d2d865bfdf
+Author: claude (dev92 b0a94b99-0fcd-41d5-b10b-58aaf93a2ec8) <noreply@anthropic.com>
+Date:   Sat Jul 18 07:53:55 2026 -0400
+
+    CI: add weston + qtwayland5 for the Wayland headless render test
+
+    The headless render test now covers Wayland as well as X11 and does not skip,
+    so the CI container must provide weston and the qtwayland plugin in addition to
+    xvfb + the xcb libraries.
+
+    ## AI-Assisted
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+commit 51b75ef238e98685f4eabf5fe6fea813c6df51fc
+Author: claude (dev92 b0a94b99-0fcd-41d5-b10b-58aaf93a2ec8) <noreply@anthropic.com>
+Date:   Sat Jul 18 07:36:32 2026 -0400
+
+    CI: install xvfb + xcb libs for the headless render test
+
+    The dist-ai suite now includes a headless render test that drives the wizard on
+    a real (virtual) X server via xvfb-run + the xcb platform plugin. Add xvfb,
+    xauth, and the Qt xcb runtime libraries so CI runs it rather than skipping.
+
+    ## AI-Assisted
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+commit e76c1d7045650fade4ae31955fbb27c1c663ba3b
+Author: claude (dev92 b0a94b99-0fcd-41d5-b10b-58aaf93a2ec8) <noreply@anthropic.com>
+Date:   Sat Jul 18 07:12:37 2026 -0400
+
+    Opt in to dist-ai CI test suite
+
+    Add the universal consumer-dist-ai-tests.yml wrapper (byte-identical from
+    developer-meta-files) so this repo's comprehensive suite (setup-wizard-dist-tests,
+    in org-ai-assisted/dist-ai) gates PRs and pushes to master. dm-consumer.yml
+    supplies python3-pyqt5 for the offscreen PyQt5 tests and checks out
+    helper-scripts (the wizard imports guimessages from it). CLAUDE.md / AGENTS.md
+    point at where the tests live.
+
+    ## AI-Assisted
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+commit 15535e4117b43ff64a0e0040a770478c7d325fbb
+Author: assisted-by-ai (Bot Account) (Machine Account) <228987186+assisted-by-ai@users.noreply.github.com>
+Date:   Sat Jul 18 06:54:58 2026 -0400
+
+    Hide Back button when the wizard has only one page (#1)
+
+    Set the NoBackButtonOnStartPage option when the wizard has a single page, so the Back button (which has nowhere to go) is hidden reliably and survives QWizard rebuilding its button layout on show(). Verified live with PyQt.
+
+    ## AI-Assisted
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+commit c26ffd85d05dc022803a985da95e0dde5fc4541b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 20 22:21:47 2026 +0000
+
+    bumped changelog version
+
 commit 15b69401e3689bfd2834538e08774c972d7944bf
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed May 20 16:57:15 2026 -0400
