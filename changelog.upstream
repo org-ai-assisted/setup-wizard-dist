@@ -1,3 +1,102 @@
+commit 80434091cb836ac1fe4389d571ce53cf051dadac
+Merge: aea866a f35fd45
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 12 03:03:04 2026 -0400
+
+    Merge remote-tracking branch 'refs/remotes/ArrayBolt3/arraybolt3/trixie'
+
+commit f35fd45a21cabddccb1af3b1d8175d5aa8858a75
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Aug 9 12:23:10 2026 -0400
+
+    Add TODO, shorten comment
+
+commit 84418d41fa684678ff8c6917ba3d904e34a4f223
+Merge: c26ffd8 f60068b
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Aug 9 12:10:18 2026 -0400
+
+    Merge branch 'ai' into arraybolt3/trixie
+
+commit f60068b191c7542026a30d1ca510d497d53f49ed
+Merge: f38e8fc c867a92
+Author: claude (dev163 38f9745c-aed1-4fb4-b6ae-9899f20f8de2) <noreply@anthropic.com>
+Date:   Fri Aug 7 13:40:10 2026 -0400
+
+    Merge org-ai-assisted/master into ai
+
+    The branch was created from a stale local master, so its PR diff showed
+    master's newer commits -- including a changelog version bump -- as REMOVALS.
+    Merging rather than rebasing, per the no-history-rewrites rule.
+
+commit f38e8fc294d700a68990f7f1fd361fadc9b0e935
+Author: claude (dev163 38f9745c-aed1-4fb4-b6ae-9899f20f8de2) <noreply@anthropic.com>
+Date:   Fri Aug 7 13:39:56 2026 -0400
+
+    setup-wizard-dist: R-010 strict mode, and fix a printf typo in both error paths
+
+    The launcher checks that /usr/bin/setup-wizard-dist exists and is executable,
+    then runs it.
+
+    REAL BUG: both guards printed with '%s\m'
+    --------------------------------------------
+
+    printf has no '\m' escape. Measured:
+
+      printf "%s\m" "MESSAGE"   ->   MESSAGE\m      (and no newline)
+
+    So both error messages -- "does not exist!" and "not executable!" -- reached the
+    user with a literal backslash-m appended and no line break, running straight
+    into whatever printed next. Both are now '%s\n'.
+
+    Otherwise just the preamble; there are no nounset traps and no deliberate word
+    splitting in the file.
+
+    Testing
+    -------
+
+    Gate exit 0 in an ISOLATED checkout.
+
+      1 same, 2 expected-differ, 0 failing
+
+    Three cases: the target present and executable, missing, and present but not
+    executable. The two guard cases are ASSERTED rather than compared -- the test
+    requires the OLD output to contain the literal '\m' and the NEW output not to,
+    so it fails if the typo returns or if it was never there to begin with.
+
+commit c867a9258462796e3b805e70393b4837a167233d
+Merge: aea866a ef53ba0
+Author: assisted-by-ai (Bot Account) (Machine Account) <228987186+assisted-by-ai@users.noreply.github.com>
+Date:   Sat Aug 1 05:01:58 2026 -0400
+
+    Merge pull request #2 from org-ai-assisted/ai
+
+    add CodeQL consumer workflows (actions, python)
+
+commit ef53ba011a8556e7ec8b0005b91943ab907efc61
+Author: claude (dev142 b93fb2c6-e15f-4d45-8566-f3ded893b70e) <noreply@anthropic.com>
+Date:   Fri Jul 31 12:57:56 2026 -0400
+
+    add CodeQL consumer workflows (actions, python)
+
+    - Replaces GitHub default-setup CodeQL (web-UI state, no file
+      representation) with the org's file-based consumer wrappers.
+    - Byte-identical copies of
+      developer-meta-files/consumer-templates/.github/workflows/.
+    - No .github/dm-consumer.yml needed: consumer-codeql-actions.yml
+      passes no dm-consumer-section, and codeql-python's section is
+      optional (ci/dm-consumer-load.sh soft-skips when absent).
+    - queries stays the reusable's default security-and-quality,
+      a superset of the security-extended suite default setup used.
+
+    Generated with assistance from Claude Code.
+
+commit aea866a38bfaed40a68da2dd855757e5e3e162ef
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 21 11:09:18 2026 +0000
+
+    bumped changelog version
+
 commit f2fdfda72d15c24e118a0291a83e3153eb1cca89
 Merge: c26ffd8 e546946
 Author: Patrick Schleizer <adrelanos@whonix.org>

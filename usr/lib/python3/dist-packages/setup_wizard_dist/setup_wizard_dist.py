@@ -291,9 +291,8 @@ class setup_wizard_dist(QtWidgets.QWizard):
         self.button(QtWidgets.QWizard.BackButton).clicked.connect(self.back_button_clicked)
         self.button(QtWidgets.QWizard.NextButton).clicked.connect(self.next_button_clicked)
 
-        ## Hide the Back button when there is only a single page, as there is
-        ## nowhere to go back to. A plain hide() does not survive QWizard
-        ## rebuilding its button layout on show(); the option does.
+        ## Hide the Back button when there is only a single page. TODO: Maybe
+        ## we should set this unconditionally?
         if len(self.pageIds()) <= 1:
             self.setOption(QtWidgets.QWizard.NoBackButtonOnStartPage, True)
 
