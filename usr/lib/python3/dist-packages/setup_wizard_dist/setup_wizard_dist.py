@@ -1,4 +1,4 @@
-#!/usr/bin/python3 -su
+#!/usr/bin/python3 -Bsu
 
 ## Copyright (C) 2014 troubadour <trobador@riseup.net>
 ## Copyright (C) 2014 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
@@ -21,6 +21,7 @@ import pathlib
 
 from guimessages.translations import _translations
 from guimessages.guimessage import gui_message
+from guimessages.check_display import exit_if_no_gui
 
 
 def declined_legal():
@@ -366,6 +367,11 @@ def main():
     if os.geteuid() == 0:
         print('usr/lib/python3/dist-packages/setup_wizard_dist/setup_wizard_dist.py ERROR: Do not run with sudo / as root!')
         sys.exit(1)
+
+    ## Constructing a QApplication on a machine with no display SIGABRTs
+    ## (exit 134, uncatchable C++ qFatal). Guard exits cleanly (0) instead.
+    ## Must run before any QApplication construction.
+    exit_if_no_gui()
 
     app = QtWidgets.QApplication(sys.argv)
 
