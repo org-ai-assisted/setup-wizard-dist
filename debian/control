@@ -15,7 +15,7 @@ Rules-Requires-Root: no
 Package: setup-wizard-dist
 Architecture: all
 Depends: setup-dist, python3-yaml,
- helper-scripts, python3, x11-xserver-utils,
+ helper-scripts (>= 3:54.5-1), python3, x11-xserver-utils,
  ${misc:Depends}
 Recommends: icon-pack-dist
 Provides: whonix-setup-wizard
