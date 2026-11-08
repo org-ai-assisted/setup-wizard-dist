@@ -51,9 +51,6 @@ class Common:
     else:
         environment = 'machine'
 
-    if not os.path.exists('/var/cache/setup-dist/status-files'):
-        pathlib.Path("/var/cache/setup-dist/status-files").mkdir(parents=True, exist_ok=True)
-
     show_disclaimer = (not os.path.exists('/var/cache/whonix-setup-wizard/status-files/disclaimer.done') and
                        not os.path.exists('/usr/share/whonix-setup-wizard/status-files/disclaimer.skip') and
                        not os.path.exists('/var/cache/setup-dist/status-files/disclaimer.done') and
@@ -344,6 +341,10 @@ class setup_wizard_dist(QtWidgets.QWizard):
 
                 file_path = pathlib.Path('/var/cache/setup-dist/status-files/disclaimer.done')
                 if not os.path.exists(file_path):
+                    ## Create the state dir lazily at first write, not at import: in
+                    ## production the postinst already made it (world-writable); this
+                    ## only covers a from-checkout run where the postinst never ran.
+                    file_path.parent.mkdir(parents=True, exist_ok=True)
                     file_path.touch(exist_ok=True)
 
             if self.env == 'workstation':
