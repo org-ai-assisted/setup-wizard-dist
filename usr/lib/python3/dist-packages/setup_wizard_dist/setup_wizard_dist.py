@@ -15,12 +15,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from subprocess import call
 
 import os
-import yaml
-import inspect
 import pathlib
 
 from guimessages.translations import _translations
-from guimessages.guimessage import gui_message
 from guimessages.check_display import exit_if_no_gui
 
 
@@ -50,12 +47,6 @@ class Common:
         environment = 'workstation'
     else:
         environment = 'machine'
-
-    show_disclaimer = (not os.path.exists('/var/cache/whonix-setup-wizard/status-files/disclaimer.done') and
-                       not os.path.exists('/usr/share/whonix-setup-wizard/status-files/disclaimer.skip') and
-                       not os.path.exists('/var/cache/setup-dist/status-files/disclaimer.done') and
-                       not os.path.exists('/usr/share/setup-dist/status-files/disclaimer.skip')
-                      )
 
     ## Disable disclaimer.
     show_disclaimer = False
@@ -114,6 +105,7 @@ class DisclaimerPage1(QtWidgets.QWizardPage):
         # Not understood
         elif self.no_button.isChecked():
             return self.steps.index('finish_page')
+        return None
 
 
 class DisclaimerPage2(QtWidgets.QWizardPage):
@@ -374,6 +366,7 @@ def main():
     ## Must run before any QApplication construction.
     exit_if_no_gui()
 
+    ## Keep a reference: QApplication must outlive the event loop (wizard.exec_()).
     app = QtWidgets.QApplication(sys.argv)
 
     signal.signal(signal.SIGINT, signal_handler)
@@ -409,12 +402,8 @@ def main():
         print('usr/lib/python3/dist-packages/setup_wizard_dist/setup_wizard_dist.py INFO: Canceled.')
         sys.exit(0)
 
-    # if Common.environment == 'gateway':
-    #    command = ['anon-connection-wizard']
-    #    exit_code = call(command)
-
     command = ['env', 'started_by_setup_wizard_dist=true', '/usr/libexec/setup-dist/ft_m_end']
-    exit_code = call(command)
+    call(command)
 
 if __name__ == "__main__":
     main()
