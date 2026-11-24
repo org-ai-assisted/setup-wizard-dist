@@ -1,4 +1,4 @@
-#!/usr/bin/python3 -su
+#!/usr/bin/python3 -Bsu
 
 ## Copyright (C) 2014 troubadour <trobador@riseup.net>
 ## Copyright (C) 2014 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
@@ -19,7 +19,6 @@
 
 import sys
 import os
-import time
 import subprocess
 
 
@@ -45,10 +44,6 @@ def check_live_mode_script():
         print('/usr/libexec/setup-wizard-dist/setup-dist_check_for_start: ERROR: non-zero exit code by "/usr/libexec/helper-scripts/live-mode.sh".')
         return False
 
-    #if "live_status_detected_live_mode_environment_machine='grub-live'" in result.stdout:
-        #return True
-    #if "live_status_detected_live_mode_environment_machine='iso-live'" in result.stdout:
-        #return True
     if "live_status_detected='true'" in result.stdout:
         return True
 
