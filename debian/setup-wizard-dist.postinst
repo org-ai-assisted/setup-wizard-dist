@@ -3,33 +3,22 @@
 ## Copyright (C) 2012 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+## style-ok: no-strict - full strict block could leak into APT/debconf
+
+## DPKG_MAINTSCRIPT_NAME and DPKG_MAINTSCRIPT_PACKAGE are exported by dpkg.
+# shellcheck disable=SC2154
+
 if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
    source /usr/libexec/helper-scripts/pre.bsh
 fi
 
-set -e
+set -o errexit
 
 true "
 #####################################################################
-## INFO: BEGIN: $DPKG_MAINTSCRIPT_PACKAGE $DPKG_MAINTSCRIPT_NAME $@
+## INFO: BEGIN: ${DPKG_MAINTSCRIPT_PACKAGE} ${DPKG_MAINTSCRIPT_NAME} $*
 #####################################################################
 "
-
-case "$1" in
-   configure)
-      true "INFO: Configuring $DPKG_MAINTSCRIPT_PACKAGE..."
-
-      mkdir --parents "/var/cache/setup-dist/status-files"
-      chmod g+w "/var/cache/setup-dist/status-files"
-      chmod o+w "/var/cache/setup-dist/status-files"
-
-      true "INFO: End configuring $DPKG_MAINTSCRIPT_PACKAGE."
-
-      ;;
-
-   *)
-      ;;
-esac
 
 true "INFO: debhelper beginning here."
 
@@ -39,7 +28,7 @@ true "INFO: Done with debhelper."
 
 true "
 #####################################################################
-## INFO: END  : $DPKG_MAINTSCRIPT_PACKAGE $DPKG_MAINTSCRIPT_NAME $@
+## INFO: END  : ${DPKG_MAINTSCRIPT_PACKAGE} ${DPKG_MAINTSCRIPT_NAME} $*
 #####################################################################
 "
 

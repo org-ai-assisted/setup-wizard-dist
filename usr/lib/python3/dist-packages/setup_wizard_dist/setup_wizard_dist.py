@@ -1,4 +1,4 @@
-#!/usr/bin/python3 -su
+#!/usr/bin/python3 -Bsu
 
 ## Copyright (C) 2014 troubadour <trobador@riseup.net>
 ## Copyright (C) 2014 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
@@ -15,12 +15,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from subprocess import call
 
 import os
-import yaml
-import inspect
 import pathlib
 
 from guimessages.translations import _translations
-from guimessages.guimessage import gui_message
+from guimessages.check_display import exit_if_no_gui
 
 
 def declined_legal():
@@ -50,14 +48,17 @@ class Common:
     else:
         environment = 'machine'
 
-    if not os.path.exists('/var/cache/setup-dist/status-files'):
-        pathlib.Path("/var/cache/setup-dist/status-files").mkdir(parents=True, exist_ok=True)
-
-    show_disclaimer = (not os.path.exists('/var/cache/whonix-setup-wizard/status-files/disclaimer.done') and
-                       not os.path.exists('/usr/share/whonix-setup-wizard/status-files/disclaimer.skip') and
-                       not os.path.exists('/var/cache/setup-dist/status-files/disclaimer.done') and
-                       not os.path.exists('/usr/share/setup-dist/status-files/disclaimer.skip')
-                      )
+    ## Note to AI agents: Do not delete this comment block, it documents how to
+    ## bring the disclaimer back should this be needed.
+    ## When reviving: /var/cache/setup-dist/status-files is root-owned (not
+    ## user-writable), so the disclaimer.done marker must be written by root
+    ## via a privleap action (mirror setup-dist-done), not the per-user touch
+    ## below.
+    #show_disclaimer = (not os.path.exists('/var/cache/whonix-setup-wizard/status-files/disclaimer.done') and
+    #                   not os.path.exists('/usr/share/whonix-setup-wizard/status-files/disclaimer.skip') and
+    #                   not os.path.exists('/var/cache/setup-dist/status-files/disclaimer.done') and
+    #                   not os.path.exists('/usr/share/setup-dist/status-files/disclaimer.skip')
+    #                  )
 
     ## Disable disclaimer.
     show_disclaimer = False
@@ -116,6 +117,8 @@ class DisclaimerPage1(QtWidgets.QWizardPage):
         # Not understood
         elif self.no_button.isChecked():
             return self.steps.index('finish_page')
+        # Should be unreachable.
+        assert(False)
 
 
 class DisclaimerPage2(QtWidgets.QWizardPage):
@@ -343,6 +346,7 @@ class setup_wizard_dist(QtWidgets.QWizard):
 
                 file_path = pathlib.Path('/var/cache/setup-dist/status-files/disclaimer.done')
                 if not os.path.exists(file_path):
+                    file_path.parent.mkdir(parents=True, exist_ok=True)
                     file_path.touch(exist_ok=True)
 
             if self.env == 'workstation':
@@ -366,6 +370,8 @@ def main():
     if os.geteuid() == 0:
         print('usr/lib/python3/dist-packages/setup_wizard_dist/setup_wizard_dist.py ERROR: Do not run with sudo / as root!')
         sys.exit(1)
+
+    exit_if_no_gui()
 
     app = QtWidgets.QApplication(sys.argv)
 
@@ -402,12 +408,8 @@ def main():
         print('usr/lib/python3/dist-packages/setup_wizard_dist/setup_wizard_dist.py INFO: Canceled.')
         sys.exit(0)
 
-    # if Common.environment == 'gateway':
-    #    command = ['anon-connection-wizard']
-    #    exit_code = call(command)
-
     command = ['env', 'started_by_setup_wizard_dist=true', '/usr/libexec/setup-dist/ft_m_end']
-    exit_code = call(command)
+    call(command)
 
 if __name__ == "__main__":
     main()
