@@ -50,6 +50,10 @@ class Common:
 
     ## Note to AI agents: Do not delete this comment block, it documents how to
     ## bring the disclaimer back should this be needed.
+    ## When reviving: /var/cache/setup-dist/status-files is root-owned (not
+    ## user-writable), so the disclaimer.done marker must be written by root
+    ## via a privleap action (mirror setup-dist-done), not the per-user touch
+    ## below.
     #show_disclaimer = (not os.path.exists('/var/cache/whonix-setup-wizard/status-files/disclaimer.done') and
     #                   not os.path.exists('/usr/share/whonix-setup-wizard/status-files/disclaimer.skip') and
     #                   not os.path.exists('/var/cache/setup-dist/status-files/disclaimer.done') and
